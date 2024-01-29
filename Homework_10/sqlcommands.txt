@@ -1,0 +1,72 @@
+SELECT * FROM Todo;
+
+ALTER TABLE Todo
+DROP COLUMN Completed;
+
+ALTER TABLE Todo
+ADD StartDate DATE;
+ALTER TABLE Todo
+ADD FinishDate DATE;
+UPDATE Todo
+SET StartDate = '2023-11-03 15:30:00'
+WHERE TeamMemberId=1;
+UPDATE Todo
+SET FinishDate = '2023-11-16 15:30:00'
+WHERE TeamMemberId=1;
+
+UPDATE Todo
+SET StartDate = '2023-11-03 15:30:00'
+WHERE TeamMemberId=2;
+UPDATE Todo
+SET FinishDate = '2023-11-12 15:30:00'
+WHERE TeamMemberId=2;
+
+UPDATE Todo
+SET StartDate = '2023-11-03 15:30:00'
+WHERE TeamMemberId=3;
+UPDATE Todo
+SET FinishDate = '2023-11-06 15:30:00'
+WHERE TeamMemberId=3;
+
+
+//calculates total average
+WITH AvgCompletionByTeam AS (
+    SELECT 
+        TeamMemberID,
+        AVG(julianday(FinishDate) - julianday(StartDate)) AS avg_completion_time
+    FROM Todo
+    WHERE StartDate IS NOT NULL AND FinishDate IS NOT NULL
+    GROUP BY TeamMemberID
+),
+TotalAverage AS (
+    SELECT AVG(avg_completion_time) AS final_total_average_completion_time
+    FROM AvgCompletionByTeam
+)
+SELECT final_total_average_completion_time
+FROM TotalAverage;
+
+
+//returns the memberids whose average is less than total average
+WITH AvgCompletionByTeam AS (
+    SELECT 
+        TeamMemberID,
+        AVG(julianday(FinishDate) - julianday(StartDate)) AS avg_completion_time
+    FROM Todo
+    WHERE StartDate IS NOT NULL AND FinishDate IS NOT NULL
+    GROUP BY TeamMemberID
+),
+TotalAverage AS (
+    SELECT AVG(avg_completion_time) AS final_total_average_completion_time
+    FROM AvgCompletionByTeam
+)
+SELECT 
+    A.TeamMemberID,
+    A.avg_completion_time,
+    TA.final_total_average_completion_time
+FROM AvgCompletionByTeam A
+CROSS JOIN TotalAverage TA
+WHERE A.avg_completion_time < TA.final_total_average_completion_time;
+
+
+
+

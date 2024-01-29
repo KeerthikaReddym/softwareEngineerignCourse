@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Record</title>
+</head>
+<body>
+    <!-- Main Heading -->
+    <h1>Update Record</h1>
+
+    <!-- Section to display selected record details -->
+    <h2>Record Details</h2>
+    <div id="recordDetails"></div>
+
+    <!-- Section for updating record details -->
+    <h2>Update Record</h2>
+    <label for="id">Id:</label>
+    <input type="text" id="id" name="id" required /><br />
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required /><br />
+    <label for="size">Size:</label>
+    <input type="text" id="size" name="size" required /><br />
+    <label for="type">Type:</label>
+    <input type="text" id="type" name="type" required /><br />
+    <label for="price">Price:</label>
+    <input type="text" id="price" name="price" required /><br />
+    <label for="chefFavorite">Chef Favorite:</label>
+    <input type="text" id="chefFavorite" name="chefFavorite" required /><br />
+
+    <!-- Button to trigger the record update function -->
+    <button type="button" onclick="updateRecord()">Update Record</button>
+
+    <!-- Button to close the page and redirect to another location -->
+    <button type="button" onclick="redirectToIndex()">Close</button>
+     <script src="/js/UpdateById.js"></script>
+
+   
+</body>
+</html>

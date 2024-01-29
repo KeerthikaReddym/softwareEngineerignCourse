@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Restaurant Menu</title>
+	</head>
+	<body>
+		<!-- Main Heading -->
+		<h1>Restaurant Menu</h1>
+
+		<!-- Section for Adding Menu Items -->
+		<h2>Add Menu Items</h2>
+		<form id="addItemForm">
+			<!-- Form fields for item details -->
+			<label for="itemName">Name:</label>
+			<input type="text" id="itemName" name="itemName" required /><br />
+			<br />
+            
+            <!-- Added drop down to show all the enum values -->
+			<label for="itemSize">Size:</label>
+			<select id="itemSize" name="itemSize">
+				<option value="S">S</option>
+				<option value="M">M</option>
+				<option value="L">L</option>
+				<option value="XL">XL</option>
+			</select>
+			<br />
+			<br />
+
+            <!-- Added drop down to show all the enum values -->            
+			<label for="itemType">Type:</label>
+			<select id="itemType" name="itemType">
+				<option value="APPITIZER">APPITIZER</option>
+				<option value="BREAD">BREAD</option>
+				<option value="SALAD">SALAD</option>
+				<option value="ENTREES">ENTREES</option>
+				<option value="DESSERT">DESSERT</option>
+				<option value="DRINKS">DRINKS</option>
+			</select>
+			<br />
+			<br />
+
+			<label for="itemPrice">Price:</label>
+			<input type="number" id="itemPrice" name="itemPrice" required /><br />
+			<br />
+
+			 <!-- Added drop down to show all the enum values -->
+			<label for="chefFavorite">Chef Favorite:</label>
+			<select id="chefFavorite" name="chefFavorite">
+				<option value="true">True</option>
+				<option value="false">False</option>
+			</select>
+			<br />
+			<br />
+
+			<!-- Button to add item, response area, and record details section -->
+			<button type="button" onclick="addItem()">Add Item</button>
+			<div id="response"></div>
+			<br />
+			<br />
+			
+			 <!-- Div To show message from Endpoint -->
+			<h2>Record Details</h2>
+			<div id="recordDetails"></div>
+
+			<!-- Button to close the form and redirect to index.html -->
+			<button type="button" onclick="redirectToIndex()">Close</button>
+		</form>
+
+		<script src="/js/AddRecord.js"></script>
+	</body>
+</html>

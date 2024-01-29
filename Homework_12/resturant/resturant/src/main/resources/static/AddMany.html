@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Restaurant Menu</title>
+		<style>
+			.tab-button {
+			    background-color: #dddddd;
+			    border: 1px solid #aaaaaa;
+			    padding: 10px 20px;
+			    margin-right: 10px;
+			    cursor: pointer;
+			}
+
+			.tab-button:hover {
+			    background-color: #cccccc;
+			}
+
+			.violet-button {
+			    background-color: violet;
+			    color: white;
+			}
+
+			.yellow-button {
+			    background-color: yellow;
+			    color: black;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Section for Adding Menu Items -->
+		<h2>Add Menu Items</h2>
+		<label for="jsonData">JSON Data:</label>
+		<textarea id="jsonData" name="jsonData" rows="5" cols="50"></textarea>
+		<h4>Please add data in JSON format</h4>
+
+		<button type="button" onclick="addManyItems()">Add Many Items</button>
+		<div id="getType"></div>
+
+		<button type="button" onclick="redirectToIndex()" class="tab-button violet-button">Home</button>
+		<button type="button" onclick="applyFilter()" class="tab-button yellow-button">Filters</button>
+
+		<script src="/js/AddMany.js"></script>
+		<script src="/js/Redirect.js"></script>
+	</body>
+</html>

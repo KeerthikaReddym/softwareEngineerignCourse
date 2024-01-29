@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Menu</title>
+    <!-- Styles for the table -->
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* CSS for the record count display */
+        #recordCount {
+            position: absolute;
+            top: 30px;
+            right: 520px;
+            color: green;
+            font-size: 24px;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Heading -->
+    <h1>Restaurant Menu</h1>
+
+    <!-- Section for Displaying Menu Items -->
+    <h2>Menu Items</h2>
+
+    <!-- Buttons for various actions -->
+    <button type="button" onclick="redirectToGetRecordPage()">Get Record by ID</button>
+    <button type="button" onclick="redirectToAddMany()">Add Many Items</button>
+    <button type="button" onclick="addSingleItemPopup()">Add Single Item</button>
+    <button type="button" onclick="retrieveAllItems()">Retrieve All Data</button>
+    <button type="button" onclick="applyFilter()">Filter</button>
+    <button type="button" onclick="deleteAllItems()">Delete All Items</button>
+
+    <!-- Table to display Menu Items -->
+    <table id="menuTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Chef Favorite</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Data rows will be inserted here dynamically -->
+        </tbody>
+    </table>
+
+    <!-- Container for response messages -->
+    <div id="response"></div>
+
+    <!-- Script files for different functionalities -->
+    <script src="/js/Index.js"></script>
+    <script src="/js/AddMany.js"></script>
+    <script src="/js/GetAllRecords.js"></script>
+    <script src="/js/Redirect.js"></script>
+
+    <!-- Placeholder for displaying the total number of records -->
+    <p id="recordCount">Total Records: Loading...</p>
+</body>
+</html>

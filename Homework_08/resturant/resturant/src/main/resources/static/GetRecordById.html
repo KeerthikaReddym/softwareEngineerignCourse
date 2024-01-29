@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get Record by ID</title>
+</head>
+<body>
+    <!-- Main Heading -->
+    <h1>Get Record by ID</h1>
+
+    <!-- Input field for entering Record ID -->
+    <label for="recordId">Enter Record ID:</label>
+    <input type="text" id="recordId" name="recordId" required />
+
+    <!-- Button to trigger the function to fetch record by ID -->
+    <button type="button" onclick="getRecordById()">Get Record</button>
+
+    <!-- Section to display the fetched record details -->
+    <h2>Record Details</h2>
+    <div id="recordDetails"></div>
+
+    <!-- Button to close the page and redirect to another location -->
+    <button type="button" onclick="redirectToIndex()">Close</button>
+
+    <!-- External JavaScript files for fetching record by ID and redirection functionality -->
+    <script src="/js/UpdateById.js"></script>
+</body>
+</html>

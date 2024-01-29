@@ -1,0 +1,286 @@
+{
+	"info": {
+		"_postman_id": "f027c0f9-5c67-4855-ab30-958bf1165831",
+		"name": "Resturant",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8486341"
+	},
+	"item": [
+		{
+			"name": "addData",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"hummus\",\r\n    \"size\":\"M\",\r\n\t\"type\":\"APPITIZER\",\r\n    \"price\":20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/Restaurant",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"Restaurant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllRecords",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/Restaurant",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"Restaurant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getById",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/Restaurant/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"Restaurant",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteByID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/Restaurant/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"Restaurant",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteAll",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/Restaurant",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"Restaurant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"id\":36,\r\n        \"name\": \"HummusWithChickPeas\",\r\n        \"size\": \"M\",\r\n        \"type\": \"SALAD\",\r\n        \"price\": 25\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/Restaurant/36",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"Restaurant",
+						"36"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addManyRecords",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"name\": \"hummus\",\r\n        \"size\": \"M\",\r\n        \"type\": \"APPITIZER\",\r\n        \"price\": 20\r\n    },\r\n    {\r\n        \"name\": \"zalok\",\r\n        \"size\": \"S\",\r\n        \"type\": \"APPITIZER\",\r\n        \"price\": 15\r\n    },\r\n    {\r\n        \"name\": \"falafal\",\r\n        \"size\": \"L\",\r\n        \"type\": \"APPITIZER\",\r\n        \"price\": 25\r\n    },\r\n    {\r\n        \"name\": \"burger\",\r\n        \"size\": \"M\",\r\n        \"type\": \"APPITIZER\",\r\n        \"price\": 20\r\n    },\r\n    {\r\n        \"name\": \"babaganoj\",\r\n        \"size\": \"S\",\r\n        \"type\": \"APPITIZER\",\r\n        \"price\": 10\r\n    },\r\n    {\r\n        \"name\": \"sausage\",\r\n        \"size\": \"L\",\r\n        \"type\": \"APPITIZER\",\r\n        \"price\": 25\r\n    },\r\n    {\r\n        \"name\": \"salad\",\r\n        \"size\": \"M\",\r\n        \"type\": \"SALAD\",\r\n        \"price\": 20\r\n    },\r\n    {\r\n        \"name\": \"chickenSausage\",\r\n        \"type\": \"APPITIZER\",\r\n        \"size\": \"M\",\r\n        \"price\": 20\r\n    },\r\n    {\r\n        \"name\": \"specialSalad\",\r\n        \"size\": \"M\",\r\n        \"type\": \"SALAD\",\r\n        \"price\": 25\r\n    },\r\n    {\r\n        \"name\": \"ChickenSheeshKabab\",\r\n        \"size\": \"S\",\r\n        \"type\": \"ENTREES\",\r\n        \"price\": 10\r\n    },\r\n    {\r\n        \"name\": \"SteakKabab\",\r\n        \"size\": \"L\",\r\n        \"type\": \"ENTREES\",\r\n        \"price\": 25\r\n    },\r\n    {\r\n        \"name\": \"Baklava\",\r\n        \"size\": \"M\",\r\n        \"type\": \"DESSERT\",\r\n        \"price\": 20\r\n    },\r\n    {\r\n        \"name\": \"PromogranateJuice\",\r\n        \"type\": \"DRINKS\",\r\n        \"size\": \"M\",\r\n        \"price\": 20\r\n    },\r\n    {\r\n        \"name\": \"HotChoclate\",\r\n        \"size\": \"M\",\r\n        \"type\": \"DRINKS\",\r\n        \"price\": 25\r\n    },\r\n    {\r\n        \"name\": \"StrawberryMilkShake\",\r\n        \"size\": \"M\",\r\n        \"type\": \"DRINKS\",\r\n        \"price\": 20\r\n    },\r\n    {\r\n        \"name\": \"mocktail\",\r\n        \"type\": \"DRINKS\",\r\n        \"size\": \"M\",\r\n        \"price\": 20\r\n    },\r\n    {\r\n        \"name\": \"VirginMockito\",\r\n        \"size\": \"M\",\r\n        \"type\": \"DRINKS\",\r\n        \"price\": 25\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/Restaurant/AddMany",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"Restaurant",
+						"AddMany"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCount",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/Restaurant/Count",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"Restaurant",
+						"Count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getByType",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Type",
+						"value": "DRINKS",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/Restaurant/type",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"Restaurant",
+						"type"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

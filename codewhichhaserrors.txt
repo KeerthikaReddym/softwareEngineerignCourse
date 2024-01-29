@@ -1,0 +1,249 @@
+<!-- Restaurant Menu Page -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Menu</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        /* New CSS for the record count */
+        #recordCount {
+            position: absolute;
+            top: 90px;
+            right: 520px;
+            color: green;
+            font-size: 24px;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Restaurant Menu</h1>
+
+    <!-- Section for Adding Menu Items -->
+    <h2>Add Menu Items</h2>
+    
+    <label for="jsonData">JSON Data:</label>
+    <textarea id="jsonData" name="jsonData" rows="5" cols="50"></textarea><br><br>
+    <button type="button" onclick="addManyItems()">Add Many Items</button>
+    <button type="button" onclick="addSingleItemPopup()">Add Single Item</button>
+    
+    <!-- Button to retrieve all data -->
+    <button type="button" onclick="retrieveAllItems()">Retrieve All Data</button>
+
+    <!-- Section for Displaying Menu Items -->
+    <h2>Menu Items</h2>
+    <!-- Button to Retrieve Record by ID -->
+    <button type="button" onclick="redirectToGetRecordPage()">Get Record by ID</button>
+    <table id="menuTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Chef Favorite</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Data rows will be inserted here -->
+        </tbody>
+    </table>
+ 
+
+    <!-- Response Section -->
+    <h2>Response</h2>
+    <div id="response"></div>
+
+    <script>
+        function addManyItems() {
+            const jsonData = document.getElementById('jsonData').value;
+            const data = JSON.parse(jsonData);
+
+            fetch('/Restaurant/AddMany', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.text())
+            .then(result => {
+                // Display the response
+                document.getElementById('response').innerHTML = result;
+                // Clear the textarea
+                document.getElementById('jsonData').value = '';
+                // After adding items, also retrieve and update the table
+                retrieveAllItems();
+                retrieveRecordCount();
+            })
+            .catch(error => {
+                document.getElementById('response').innerHTML = `Error: ${error.message}`;
+            });
+        }
+
+        function retrieveAllItems() {
+    fetch('/Restaurant', {
+        method: 'GET',
+    })
+    .then(response => response.json())
+    .then(data => {
+        const tableBody = document.getElementById('tableBody');
+        tableBody.innerHTML = ''; // Clear existing rows
+        data.forEach(item => {
+            const row = document.createElement('tr');
+            const idCell = document.createElement('td');
+            const nameCell = document.createElement('td');
+            const sizeCell = document.createElement('td');
+            const typeCell = document.createElement('td');
+            const priceCell = document.createElement('td');
+            const chefFavoriteCell = document.createElement('td');
+            const deleteButtonCell = document.createElement('td');
+            const updateButtonCell = document.createElement('td');
+
+            idCell.textContent = item.id;
+            nameCell.textContent = item.name;
+            sizeCell.textContent = item.size;
+            typeCell.textContent = item.type;
+            priceCell.textContent = item.price;
+            chefFavoriteCell.textContent = item.chefFavorite;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', () => {
+                deleteItem(item.id);
+            });
+
+            const updateButton = document.createElement('button');
+            updateButton.textContent = 'Update';
+            updateButton.addEventListener('click', () => {
+                // Implement your update logic here
+                // You can redirect to an update page or show a form in a modal
+                 <!-- Button to Retrieve Record by ID -->
+    <button type="button" onclick="redirectToUpdateRecordPage()">Get Record by ID</button>
+            });
+
+            deleteButtonCell.appendChild(deleteButton);
+            updateButtonCell.appendChild(updateButton);
+
+            row.appendChild(idCell);
+            row.appendChild(nameCell);
+            row.appendChild(sizeCell);
+            row.appendChild(typeCell);
+            row.appendChild(priceCell);
+            row.appendChild(chefFavoriteCell);
+            row.appendChild(deleteButtonCell);
+            row.appendChild(updateButtonCell);
+
+            tableBody.appendChild(row);
+        });
+    })
+    .catch(error => {
+        document.getElementById('response').innerHTML = `Error: ${error.message}`;
+    });
+}
+
+function deleteItem(id) {
+    fetch(`/Restaurant/${id}`, {
+        method: 'DELETE',
+    })
+    .then(response => {
+        if (response.ok) {
+            // Item deleted successfully, update the table
+            retrieveAllItems();
+            retrieveRecordCount();
+        } else {
+            throw new Error('Failed to delete item');
+        }
+    })
+    .catch(error => {
+        document.getElementById('response').innerHTML = `Error: ${error.message}`;
+    });
+}
+
+	
+        function deleteAllItems() {
+            fetch('/Restaurant', {
+                method: 'DELETE', // Change this to 'DELETE' to delete all records
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Records deleted successfully, update the table
+                    return response.text();
+                } else {
+                    throw new Error('Failed to delete records');
+                }
+            })
+            .then(data => {
+                const tableBody = document.getElementById('tableBody');
+                tableBody.innerHTML = ''; // Clear existing rows
+                // No need to iterate over deleted data because it's not available after deletion
+                retrieveRecordCount();
+            })
+            .catch(error => {
+                document.getElementById('response').innerHTML = `Error: ${error.message}`;
+            });
+        }
+
+        // Add this function call to update the record count when the page loads
+        window.addEventListener('load', () => {
+            retrieveRecordCount();
+        });
+
+        // Function to retrieve and display the count of records
+        function retrieveRecordCount() {
+            fetch('/Restaurant/Count', {
+                method: 'GET',
+            })
+            .then(response => response.text())
+            .then(count => {
+                if (count === '') {
+                    count = 0;
+                }
+                document.getElementById('recordCount').textContent = `Total Records: ${count}`;
+            })
+            .catch(error => {
+                document.getElementById('response').innerHTML = `Error: ${error.message}`;
+            });
+        }
+
+        // Function to display the pop-up for adding a single item
+        function addSingleItemPopup() {
+            // Redirect to the other page
+            window.location.href = '/Addrecord.html';
+        }
+        // Function to redirect to the Get Record by ID page
+        function redirectToGetRecordPage() {
+            // Redirect to the page for retrieving a record by ID
+            window.location.href = '/GetRecordById.html';
+        }
+        // Function to redirect to the Get Record by ID page
+        function redirectToUpdateRecordPage() {
+            // Redirect to the page for retrieving a record by ID
+            window.location.href = '/UpdateById.html';
+        }
+    </script>
+
+    <!-- Button to Delete All Menu Items -->
+    <button type="button" onclick="deleteAllItems()">Delete All Items</button>
+    <!-- Record count placeholder -->
+    <p id="recordCount">Total Records: Loading...</p>
+</body>
+</html>
